@@ -23,6 +23,15 @@ jobs:
         with:
           dotnet-version: ${{env.DOTNET_VERSION}}
       
+      - name: Start SQL Server
+        run: |
+          docker run -d -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=P@ssw0rd" -e "MSSQL_PID=Express" -p 1433:1433 -d mcr.microsoft.com/mssql/server:latest 
+
+      - name: Sleep for 30 seconds
+        uses: jakejarvis/wait-action@master
+        with:
+         time: '5s'
+
       - name: Restore
         run: dotnet restore
              
@@ -31,6 +40,8 @@ jobs:
       
      
       - name: Run automated tests
+        env:
+          ConnectionStrings__DefaultConnection: Server=localhost;Database=CICD_Demo_Test;User=sa;Password=P@ssw0rd
         run: dotnet test -c Release --no-build
       
       - name: Publish
