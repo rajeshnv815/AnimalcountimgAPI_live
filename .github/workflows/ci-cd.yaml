@@ -52,7 +52,7 @@ jobs:
       - name: Publish Animalcounting.Tests
         run: |
           dotnet publish Animalcounting.Tests/Animalcounting.Tests.csproj -c Release -o ./Published/Animalcounting.Tests/    
-          rm -f ./Published/Animalcounting.Tests/appsettings.json  # Remove appsettings.json from Animalcounting.Tests
+          mv ./Published/Animalcounting.Tests/appsettings.json ./Published/Animalcounting.Tests/Animalcounting.Tests.appsettings.json
 
 
       - name: Deploy web App in Azure
