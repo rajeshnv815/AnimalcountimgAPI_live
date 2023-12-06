@@ -29,7 +29,17 @@ jobs:
       - name: Build app
         run: dotnet build -c Release --no-restore 
       
-     # - name: Publish
-      #  run: dotnet publish --no-build -c Release -o ./Published
+     
       - name: Run automated tests
         run: dotnet test -c Release --no-build
+      
+      - name: Publish
+        run: dotnet publish --no-build -c Release -o ./Published
+             
+
+      - name: Deploy web App in Azure
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: Animalcounting
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_SECRET }}
+          package: ./Published
