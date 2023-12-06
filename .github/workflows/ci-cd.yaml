@@ -50,10 +50,7 @@ jobs:
         run: dotnet publish AnimalAPI/AnimalAPI.csproj -c Release -o ./Published/AnimalAPI
               
       - name: Publish Animalcounting.Tests
-        run: |
-          dotnet publish Animalcounting.Tests/Animalcounting.Tests.csproj -c Release -o ./Published/Animalcounting.Tests
-          rm -f ./Published/Animalcounting.Tests/appsettings.json  # Remove appsettings.json from Animalcounting.Tests
-      
+        run: dotnet publish Animalcounting.Tests/Animalcounting.Tests.csproj -c Release -o ./Published/Animalcounting.Tests
 
       - name: Deploy web App in Azure
         uses: azure/webapps-deploy@v2

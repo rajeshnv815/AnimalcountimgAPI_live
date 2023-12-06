@@ -33,5 +33,7 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </None>
   </ItemGroup>
-
+  <ItemGroup>
+    <None Update="appsettings.json" Publish="false" />
+  </ItemGroup>
 </Project>
