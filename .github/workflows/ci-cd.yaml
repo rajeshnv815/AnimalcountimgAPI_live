@@ -44,11 +44,8 @@ jobs:
           ConnectionStrings__DefaultConnection: Server=localhost;Database=CICD_Demo_Test;User=sa;Password=P@ssw0rd
         run: dotnet test -c Release --no-build
       
-      - name: Publish API
-        run: dotnet publish AnimalAPI/AnimalAPI.csproj -c Release -o ./Published/AnimalAPI
-      
-       - name: Publish Tests
-        run: dotnet publish Animalcounting.Tests/Animalcounting.Tests.csproj -c Release -o ./Published/Animalcounting.Tests
+      - name: Publish
+        run: dotnet publish --no-build -c Release -o ./Published
              
 
       - name: Deploy web App in Azure
@@ -56,4 +53,4 @@ jobs:
         with:
           app-name: Animalcounting
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_SECRET }}
-          package: ./Published/AnimalAPI
+          package: ./Published
