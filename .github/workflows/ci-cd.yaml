@@ -31,5 +31,5 @@ jobs:
       
      # - name: Publish
       #  run: dotnet publish --no-build -c Release -o ./Published
-     # - name: Run automated tests
-       # run: dotnet test -c Release --no-build
+      - name: Run automated tests
+        run: dotnet test -c Release --no-build
